@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="assistant-token" content="__SESSION_TOKEN__">
+  <title>Linux Desktop Assistant</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div><p class="eyebrow">Linux desktop companion</p><h1>Your assistant</h1></div><span id="status" class="status">Ready</span></header>
+    <section class="workspace">
+      <section class="panel tasks">
+        <h2>Ask for a safe action</h2>
+        <p class="muted">Try “open Firefox” or “open https://example.com”.</p>
+        <label for="request">What should I do?</label>
+        <input id="request" autocomplete="off" placeholder="Open Firefox or a website URL">
+        <button id="send" class="primary">Review action</button>
+        <h3>Activity</h3><ol id="activity" class="activity"><li>Waiting for your request.</li></ol>
+      </section>
+      <section class="panel stage">
+        <div class="scene"><div id="bot" class="bot idle" aria-label="Animated assistant character"><div class="antenna"><i></i></div><div class="head"><i class="eye one"></i><i class="eye two"></i><i class="mouth"></i></div><div class="body"></div><div class="arm left"></div><div class="arm right"></div><div class="leg left"></div><div class="leg right"></div><div class="shadow"></div></div></div>
+        <h2 id="caption">Ready when you are</h2><p class="muted">The character animates while an approved action is being performed.</p>
+      </section>
+      <aside class="panel safety"><h2>Safety boundaries</h2><ul><li>Every action requires your approval.</li><li>No deleting files or changing system settings.</li><li>No shell commands, typing, or clicking in other apps.</li><li>Only the listed apps and HTTP/HTTPS websites can be opened.</li></ul></aside>
+    </section>
+  </main>
+  <dialog id="approval"><form method="dialog"><h2>Approve this action?</h2><p id="action-description"></p><p class="warning">Only approve if this is exactly what you want.</p><div class="buttons"><button value="cancel" class="secondary">Deny</button><button id="approve" value="approve" class="primary">Approve and run</button></div></form></dialog>
+  <script src="/app.js"></script>
+</body>
+</html>

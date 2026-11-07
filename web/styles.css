@@ -1,0 +1,52 @@
+* { box-sizing: border-box; }
+:root { color-scheme: dark; font-family: system-ui, sans-serif; color: #eef4ff; background: #080e1b; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% 0, #172b4d, #080e1b 65%); }
+.shell { max-width: 1180px; margin: auto; padding: 28px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin-bottom: 0; font-size: 2rem; }
+.eyebrow { color: #63cbff; text-transform: uppercase; letter-spacing: .14em; font-size: .75rem; margin-bottom: 6px; }
+.status { border: 1px solid #3475a5; color: #76d3ff; border-radius: 20px; padding: 8px 14px; }
+.workspace { display: grid; grid-template-columns: minmax(260px, 1fr) minmax(300px, 1fr); gap: 18px; }
+.panel { background: #101827eF; border: 1px solid #ffffff20; border-radius: 18px; padding: 20px; box-shadow: 0 16px 40px #0003; }
+.tasks { grid-row: span 2; }
+.muted { color: #aab9d1; line-height: 1.55; }
+label { display: block; margin: 20px 0 8px; }
+input { width: 100%; padding: 12px; color: #fff; background: #080e1b; border: 1px solid #3b4a60; border-radius: 10px; font: inherit; }
+button { border: 0; border-radius: 10px; padding: 11px 15px; font: inherit; font-weight: 700; cursor: pointer; }
+.primary { color: white; background: linear-gradient(120deg, #41bafa, #3475ff); }
+#send { display: block; margin: 12px 0 26px auto; }
+.activity { padding-left: 22px; color: #c1cde0; line-height: 1.6; overflow-wrap: anywhere; }
+.activity li { padding: 4px 0; }
+.scene { height: 310px; display: grid; place-items: center; border-radius: 14px; background: linear-gradient(#1b3c5a77, #121d2e); overflow: hidden; }
+.bot { width: 160px; height: 235px; position: relative; transform-origin: center bottom; }
+.head { position: absolute; top: 52px; left: 36px; width: 88px; height: 75px; border-radius: 40%; background: linear-gradient(#f5fbff,#bad3f3); border: 4px solid #253b5a; }
+.antenna { position: absolute; top: 23px; left: 78px; height: 32px; width: 4px; background: #dceaff; }
+.antenna i { position: absolute; width: 12px; height: 12px; border-radius: 50%; left: -4px; top: -8px; background: #4fc4ff; box-shadow: 0 0 15px #4fc4ff; }
+.eye { position: absolute; top: 24px; width: 9px; height: 14px; border-radius: 50%; background: #132945; animation: blink 4s infinite; }
+.eye.one { left: 19px; } .eye.two { right: 19px; }
+.mouth { position: absolute; left: 29px; bottom: 12px; width: 22px; height: 8px; border-bottom: 3px solid #23466c; border-radius: 50%; }
+.body { position: absolute; top: 119px; left: 26px; width: 108px; height: 72px; border: 4px solid #253b5a; border-radius: 20px; background: linear-gradient(#5bc9ff,#317aff); }
+.arm, .leg { position: absolute; width: 15px; border-radius: 12px; background: #d7e7fa; }
+.arm { top: 128px; height: 58px; } .arm.left { left: 13px; transform: rotate(25deg); } .arm.right { right: 13px; transform: rotate(-25deg); }
+.leg { top: 181px; height: 45px; } .leg.left { left: 49px; } .leg.right { right: 49px; }
+.shadow { position: absolute; bottom: 2px; left: 25px; width: 110px; height: 15px; border-radius: 50%; background: #0006; }
+.bot.idle { animation: float 2.8s ease-in-out infinite; }
+.bot.working { animation: work .55s ease-in-out infinite alternate; }
+.bot.working .arm.left { animation: leftArm .35s ease-in-out infinite alternate; }
+.bot.working .arm.right { animation: rightArm .35s ease-in-out infinite alternate; }
+.bot.happy .mouth { height: 12px; border-bottom-width: 5px; }
+.safety li { color: #b7c5d9; margin: 10px 0; line-height: 1.45; }
+dialog { width: min(460px, calc(100vw - 32px)); color: #eef4ff; background: #111b2c; border: 1px solid #60728d; border-radius: 16px; padding: 22px; }
+dialog::backdrop { background: #000a; }
+dialog p { line-height: 1.5; overflow-wrap: anywhere; }
+.warning { color: #ffce68; }
+.buttons { display: flex; justify-content: flex-end; gap: 10px; }
+.secondary { color: #eef4ff; background: #27344a; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+@keyframes work { to { transform: translateY(-8px) rotate(2deg); } }
+@keyframes leftArm { to { transform: rotate(50deg); } }
+@keyframes rightArm { to { transform: rotate(-50deg); } }
+@keyframes blink { 0%, 46%, 49%, 100% { transform: scaleY(1); } 47% { transform: scaleY(.1); } }
+@media (max-width: 760px) { .workspace { grid-template-columns: 1fr; } .tasks { grid-row: auto; } .shell { padding: 18px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
