@@ -1,0 +1,13 @@
+{
+  "name": "linux-ai-desktop-assistant",
+  "version": "1.0.0",
+  "description": "Linux desktop AI assistant with a character avatar and clearly approved actions only.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --inspect"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0"
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linux AI Desktop Assistant</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Linux AI desktop assistant</p>
+          <h1>Personal companion</h1>
+        </div>
+        <div class="status-pill" id="statusPill">Idle</div>
+      </header>
+
+      <main class="layout">
+        <section class="panel left-panel">
+          <div class="panel-header">
+            <h2>Task queue</h2>
+          </div>
+
+          <div id="taskList" class="task-list">
+            <div class="task-card neutral">
+              <div class="task-badge">SYSTEM</div>
+              <p>Waiting for your command.</p>
+            </div>
+          </div>
+
+          <div class="composer">
+            <label class="field-label" for="promptInput">Tell the assistant what to do</label>
+            <textarea id="promptInput" rows="4" placeholder="Example: open firefox, open https://example.com, launch code"></textarea>
+            <div class="controls">
+              <button id="submitTask" class="primary-btn">Send task</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel center-panel">
+          <div class="character-scene">
+            <div class="character idle" id="character">
+              <div class="shadow"></div>
+              <div class="antenna"></div>
+              <div class="head">
+                <div class="eyes">
+                  <span class="eye left"></span>
+                  <span class="eye right"></span>
+                </div>
+                <div class="mouth"></div>
+              </div>
+              <div class="body"></div>
+              <div class="arm left"></div>
+              <div class="arm right"></div>
+              <div class="leg left"></div>
+              <div class="leg right"></div>
+            </div>
+          </div>
+
+          <div class="assistant-output">
+            <h3>Assistant</h3>
+            <p id="assistantMessage">I’m ready to help with safe desktop tasks and browser actions.</p>
+          </div>
+        </section>
+
+        <aside class="panel right-panel">
+          <div class="panel-header">
+            <h2>Approved actions</h2>
+          </div>
+
+          <ul class="allowed-list">
+            <li>Open browser URL</li>
+            <li>Launch an approved Linux app</li>
+            <li>Open a local folder</li>
+            <li>Show status and task logs</li>
+          </ul>
+
+          <div class="blocker">
+            <h3>Safety</h3>
+            <p>No file deletion. No system settings changes. No desktop automation without approval.</p>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <div id="approvalModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <h2>Approve action</h2>
+        <p id="approvalText">Open firefox</p>
+        <div class="modal-actions">
+          <button id="denyAction" class="secondary-btn">Deny</button>
+          <button id="approveAction" class="primary-btn">Approve</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
