@@ -1,0 +1,492 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-900: #070d1a;
+  --bg-800: #0d1528;
+  --panel: rgba(17, 24, 39, 0.88);
+  --panel-strong: rgba(13, 17, 28, 0.95);
+  --line: rgba(148, 163, 184, 0.2);
+  --text: #ebf3ff;
+  --muted: #a9b9d5;
+  --primary: #59c3ff;
+  --primary-strong: #1674ff;
+  --good: #2fe4a6;
+  --warn: #ffcd5c;
+  --danger: #ff6679;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: Inter, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #11213d 0%, var(--bg-900) 52%);
+  color: var(--text);
+}
+
+body {
+  min-height: 100vh;
+}
+
+button, textarea {
+  font: inherit;
+}
+
+.app-shell {
+  padding: 28px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.6rem, 2vw, 2.5rem);
+}
+
+.status-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(89, 195, 255, 0.4);
+  background: rgba(89, 195, 255, 0.12);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.2fr) minmax(360px, 1.2fr) minmax(220px, 0.8fr);
+  gap: 20px;
+}
+
+.panel {
+  background: rgba(13, 17, 28, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+.panel-header {
+  margin-bottom: 14px;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+}
+
+.task-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(148, 163, 184, 0.06);
+}
+
+.task-card.neutral {
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.task-card.approved {
+  border-color: rgba(47, 228, 166, 0.35);
+  background: rgba(47, 228, 166, 0.08);
+}
+
+.task-card.pending {
+  border-color: rgba(255, 205, 92, 0.35);
+  background: rgba(255, 205, 92, 0.08);
+}
+
+.task-card.rejected {
+  border-color: rgba(255, 102, 121, 0.35);
+  background: rgba(255, 102, 121, 0.08);
+}
+
+.task-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.task-card p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.composer {
+  margin-top: 18px;
+}
+
+.field-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 120px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text);
+  padding: 14px 16px;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.primary-btn, .secondary-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: white;
+}
+
+.secondary-btn {
+  background: rgba(148, 163, 184, 0.08);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.character-scene {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 440px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(89, 195, 255, 0.08), rgba(17, 24, 39, 0.32));
+  border: 1px solid rgba(89, 195, 255, 0.1);
+}
+
+.character {
+  position: relative;
+  width: 180px;
+  height: 260px;
+  transform-origin: center bottom;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 18px;
+  background: rgba(15, 23, 42, 0.55);
+  border-radius: 50%;
+}
+
+.antenna {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: 4px;
+  height: 42px;
+  background: #dfe9ff;
+  transform: translateX(-50%);
+}
+
+.antenna::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 18px rgba(89, 195, 255, 0.9);
+}
+
+.head {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 88px;
+  background: linear-gradient(180deg, #ebf4ff 0%, #bfd7f8 100%);
+  border-radius: 42% 42% 44% 44%;
+  border: 4px solid rgba(17, 24, 39, 0.25);
+}
+
+.eyes {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.eye {
+  width: 12px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10243d;
+  display: block;
+  animation: blink 4.5s infinite ease-in-out;
+}
+
+.mouth {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 10px;
+  border-radius: 0 0 20px 20px;
+  border-bottom: 4px solid #1d3d68;
+}
+
+.body {
+  position: absolute;
+  left: 50%;
+  top: 128px;
+  transform: translateX(-50%);
+  width: 108px;
+  height: 88px;
+  border-radius: 16px 16px 24px 24px;
+  background: linear-gradient(180deg, #59c3ff 0%, #3085ff 100%);
+  border: 4px solid rgba(17, 24, 39, 0.25);
+}
+
+.arm {
+  position: absolute;
+  top: 138px;
+  width: 18px;
+  height: 78px;
+  background: linear-gradient(180deg, #dfeeff 0%, #bad7f8 100%);
+  border-radius: 12px;
+}
+
+.arm.left {
+  left: 20px;
+  transform: rotate(28deg);
+}
+
+.arm.right {
+  right: 20px;
+  transform: rotate(-28deg);
+}
+
+.leg {
+  position: absolute;
+  top: 206px;
+  width: 18px;
+  height: 70px;
+  background: linear-gradient(180deg, #dfeeff 0%, #c0d8f7 100%);
+  border-radius: 12px;
+}
+
+.leg.left {
+  left: 62px;
+}
+
+.leg.right {
+  right: 62px;
+}
+
+.character.idle {
+  animation: idleFloat 2.8s ease-in-out infinite;
+}
+
+.character.working {
+  animation: workingMove 0.7s ease-in-out infinite alternate;
+}
+
+.character.working .arm.left {
+  animation: armSwingLeft 0.6s ease-in-out infinite alternate;
+}
+
+.character.working .arm.right {
+  animation: armSwingRight 0.6s ease-in-out infinite alternate;
+}
+
+.character.thinking .head {
+  animation: nod 1.3s ease-in-out infinite;
+}
+
+.character.happy .mouth {
+  border-bottom-width: 7px;
+  width: 38px;
+}
+
+.assistant-output {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.assistant-output p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.allowed-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.blocker {
+  margin-top: 20px;
+  border: 1px solid rgba(255, 102, 121, 0.25);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(255, 102, 121, 0.06);
+}
+
+.blocker p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 6, 23, 0.66);
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-card {
+  width: min(470px, calc(100vw - 32px));
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.modal-card h2 {
+  margin-bottom: 12px;
+}
+
+#approvalText {
+  margin-bottom: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@keyframes idleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes workingMove {
+  0% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes armSwingLeft {
+  0% {
+    transform: rotate(18deg);
+  }
+  100% {
+    transform: rotate(52deg);
+  }
+}
+
+@keyframes armSwingRight {
+  0% {
+    transform: rotate(-18deg);
+  }
+  100% {
+    transform: rotate(-52deg);
+  }
+}
+
+@keyframes blink {
+  0%, 46%, 48%, 100% {
+    transform: scaleY(1);
+  }
+  47% {
+    transform: scaleY(0.15);
+  }
+}
+
+@keyframes nod {
+  0%, 100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(5deg);
+  }
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .character-scene {
+    height: 360px;
+  }
+}
