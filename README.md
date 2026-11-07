@@ -1,29 +1,31 @@
 # Linux AI Desktop Assistant
 
-A small Linux Mint-friendly desktop assistant prototype. This version uses Python's standard library instead of Electron, Node.js, npm, or downloaded runtime binaries. It opens a local control page in your default browser and includes an animated character.
+A native-window desktop assistant prototype for Linux Mint. The UI is a real Tk desktop window (not a browser tab or Electron app); Python's standard library is used for the app. A local Ollama model provides natural-language planning. The model can only propose opening one allowlisted app or an HTTP/HTTPS website, and the app asks you before carrying it out.
 
-## Run on Linux Mint
-
-Python 3 is normally available by default. From the project folder run:
+## Run the native desktop app
 
 ```bash
-python3 assistant.py
+python3 desktop_assistant.py
 ```
 
-The app opens its control page in your default browser. Keep the terminal open while using it; press `Ctrl+C` there to stop the assistant. No npm install is needed.
+If Python reports `No module named tkinter`, install the Mint package once with `sudo apt install python3-tk`, then run the command again.
 
-## Supported actions
+## Enable the local AI
 
-- Open a website in your default browser using an `http://` or `https://` URL.
-- Launch an app from the built-in allowlist: Firefox, Chromium, Chrome, Nemo, Xed, LibreOffice, VLC, or Code. The chosen app must already be installed.
+Install Ollama for Linux from its official instructions, start its local service, and download a model once:
 
-Each supported action shows a confirmation dialog before it is sent to the local assistant. Denying a request does nothing. The assistant does not delete files, modify system settings, run shell commands, or type/click inside other applications. It is a safe desktop-task prototype, not yet connected to an AI model.
+```bash
+ollama pull qwen2.5:3b
+```
 
-## Safety and implementation
+Then use the app's default model name `qwen2.5:3b`. The AI talks only to Ollama on `127.0.0.1`; it does not send prompts to a cloud AI provider. The model must be downloaded locally, so the first setup requires an internet connection and disk space.
 
-- The local HTTP service listens only on `127.0.0.1` and uses a random per-run token for action requests.
-- App launches use fixed executable allowlists and do not invoke a shell.
-- Website addresses are limited to HTTP and HTTPS.
-- Review every action description before approving it.
+## Supported actions and limits
 
-The earlier Electron files are retained in the repository, but you do not need Electron, Node.js, or npm to run this Python version.
+- Launch an installed app from a fixed allowlist: Firefox, Chromium, Chrome, Nemo, Xed, LibreOffice, VLC, or Code.
+- Open an HTTP/HTTPS website in your default browser.
+- The local model can translate natural language into a proposal, but it does not execute actions.
+- Every proposed desktop action is shown in a confirmation dialog. Denying means no action is run.
+- No deleting files, changing system settings, shell commands, typing/clicking in other apps, or general-purpose computer control.
+
+The original `assistant.py` browser prototype remains available, but `desktop_assistant.py` is the native desktop app. The older Electron files are not needed to run it.
